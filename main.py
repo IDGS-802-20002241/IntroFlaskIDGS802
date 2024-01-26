@@ -2,7 +2,7 @@ from flask import Flask, request, render_template
 
 app=Flask(__name__)
 
-''' 
+'''     
 Decoradores o rutas
 '''
 @app.route("/")
@@ -86,7 +86,9 @@ def mult1():
         
         return "<h1>El resultado es: {} </h1>".format(str(int(num1)*int(num2)))
     
-
+@app.route("/practica1")
+def practica():
+    return render_template("layout2.html")
 
 if __name__ == "__main__":
     app.run(debug=True)   
