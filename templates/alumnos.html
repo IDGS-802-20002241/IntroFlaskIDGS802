@@ -1,12 +1,21 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <h1>Saludos desde alumnos</h1>
-  
-</body>
-</html>
+{%extends "layout2.html" %}
+
+{%block content %}
+{%import "_macros.html" as macro %}
+<h1>Alumnos</h1>
+<form action="" method="POST">
+    <!--   
+    formas de uso variables desde macros, formularios , etc
+    
+    {{macro.datos("nombre","NOMBRE")}}
+    {{macro.datos("edad","EDAD", "number")}} -->
+    {{macro.input_Form(form.nombre,class="form-control") }}
+    {{macro.input_Form(form.email,class="form-control") }}
+    {{macro.input_Form(form.apaterno,class="form-control") }}
+    <input type="submit" name="btn1">
+
+    <!--     {{ form.materias }}-->
+</form>
+
+
+{% endblock %}

@@ -1,5 +1,5 @@
 from flask import Flask, request, render_template
-
+import forms 
 app=Flask(__name__)
 
 '''     
@@ -8,9 +8,20 @@ Decoradores o rutas
 @app.route("/")
 def index():
     return render_template("index.html")
-@app.route("/alumnos")
+
+@app.route("/alumnos",methods=["GET","POST"])
 def alumnos():
-    return render_template("alumnos.html")
+    alumn_form=forms.UserForm(request.form)
+    if request.method == 'POST':
+        nom=alumn_form.nombre.data    
+        email=alumn_form.email.data    
+        apaterno=alumn_form.apaterno.data   
+        print("nombre: {}".format(nom)) 
+        print("email: {}".format(email)) 
+        print("Apellido paterno: {}".format(apaterno)) 
+    return render_template("alumnos.html", form =alumn_form )
+
+
 @app.route("/maestros")
 def maestros():
     return render_template("maestros.html")
