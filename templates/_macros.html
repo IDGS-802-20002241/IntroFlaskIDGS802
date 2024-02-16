@@ -5,6 +5,14 @@
 
 
 {%macro input_Form(Field)%}
-    <td>{{Field.label}}</td>
-    <dd>{{ Field(**kwargs)|safe}}</dd>
+<td>{{Field.label}}</td>
+<dd>{{ Field(**kwargs)|safe}}</dd>
+
+{%if Field.errors%}
+<ul>
+    {%for error in Field.errors%}
+    <li style="color:red">{{error}}</li>{%endfor%}
+</ul>
+{%endif%}
+
 {%endmacro%}

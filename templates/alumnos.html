@@ -3,7 +3,7 @@
 {%block content %}
 {%import "_macros.html" as macro %}
 <h1>Alumnos</h1>
-<form action="" method="POST">
+<form action="" method="POST" novalidate>
     <!--   
     formas de uso variables desde macros, formularios , etc
     
@@ -12,10 +12,12 @@
     {{macro.input_Form(form.nombre,class="form-control") }}
     {{macro.input_Form(form.email,class="form-control") }}
     {{macro.input_Form(form.apaterno,class="form-control") }}
+    {{macro.input_Form(form.edad,class="form-control") }}
     <input type="submit" name="btn1">
 
     <!--     {{ form.materias }}-->
 </form>
+<p>{{form.edad}}</p>
 
 
 {% endblock %}
