@@ -9,6 +9,8 @@
     
     {{macro.datos("nombre","NOMBRE")}}
     {{macro.datos("edad","EDAD", "number")}} -->
+    {{form.csrf_token }}
+    <input type="hidden" name="csrf" value="{{csrf_token}}">
     {{macro.input_Form(form.nombre,class="form-control") }}
     {{macro.input_Form(form.email,class="form-control") }}
     {{macro.input_Form(form.apaterno,class="form-control") }}
@@ -17,7 +19,7 @@
 
     <!--     {{ form.materias }}-->
 </form>
-<p>{{form.edad}}</p>
+<p>{{form.nombre}}</p>
 
 
 {% endblock %}

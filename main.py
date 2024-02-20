@@ -1,21 +1,43 @@
-from flask import Flask, request, render_template
+from flask import Flask, request, render_template,Response
+from flask_wtf.csrf import CSRFProtect
 import forms 
+from flask import flash
+from flask import g
 app=Flask(__name__)
-
+app.secret_key='esta es la clave secreta'
 '''     
 Decoradores o rutas
 '''
+@app.errorhandler(404)
+def page_not_found(e):
+    return render_template('404.html'),404
+
+@app.before_request
+def before_reques():
+    g.prueba='hola'
+    print('Antes de ruta')
+    
+@app.after_request
+def after_request(response):
+    print('Despues de la ruta 3')
+    return response
+
 @app.route("/")
 def index():
     return render_template("index.html")
 
 @app.route("/alumnos",methods=["GET","POST"])
 def alumnos():
+    print('dentro 2')
+    valor=g.prueba
+    print('el dato es: {}'.format(valor))
     alumn_form=forms.UserForm(request.form)
     if request.method == 'POST' and alumn_form.validate():
         nom=alumn_form.nombre.data    
         email=alumn_form.email.data    
         apaterno=alumn_form.apaterno.data   
+        mensaje='Bienvenido: {}'.format(nom)
+        flash(mensaje)
         print("nombre: {}".format(nom)) 
         print("email: {}".format(email)) 
         print("Apellido paterno: {}".format(apaterno)) 
